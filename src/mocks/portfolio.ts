@@ -20,6 +20,13 @@ export const profileData = {
       { text: '2) 카오스 제로 나이트메어 게임 분석서 바로가기', url: 'https://example.com/game-analysis.pdf' },
     ] },
   ],
+  characterStats: [
+    { label: '열정', value: 92 },
+    { label: '성실도', value: 88 },
+    { label: '커뮤니케이션', value: 78 },
+    { label: '꼼꼼함', value: 90 },
+    { label: '분석력', value: 85 },
+  ],
   skills: [
     { icon: 'ri-bug-line', name: '버그리포트' },
     { icon: 'ri-file-list-3-line', name: 'TC작성' },
@@ -64,19 +71,9 @@ export const careerData = {
     },
     {
       title: '청강문화산업대학교',
-      subtitle: '패션디자인 전공심화 (학사)',
-      period: '2022.03 ~ 2023.02',
-      description: '청강문화산업대학교에서 패션디자인 전공심화 학사 과정을 수료했습니다.',
-      tags: ['# 청강대', '# 패션디자인', '# 학사'],
-      type: 'education',
-      icon: 'ri-graduation-cap-line',
-      sideIcon: 'ri-graduation-cap-fill',
-    },
-    {
-      title: '청강문화산업대학교',
-      subtitle: '패션디자인 (3년제)',
-      period: '2019.03 ~ 2022.02',
-      description: '청강문화산업대학교 패션디자인 3년제 과정을 졸업했습니다.',
+      subtitle: '패션디자인 (학사)',
+      period: '2019.03 ~ 2023.02',
+      description: '청강문화산업대학교 패션디자인 3년제 과정 졸업 후, 전공심화로 학사를 취득했습니다.',
       tags: ['# 청강대', '# 패션디자인', '# 3년제', '# 졸업'],
       type: 'education',
       icon: 'ri-graduation-cap-line',
@@ -290,32 +287,45 @@ export const skillsToolData = [
   {
     category: 'Office',
     items: [
-      { name: '구글시트', icon: 'ri-table-line' },
-      { name: '엑셀', icon: 'ri-file-list-line' },
+      { name: '구글시트', icon: 'ri-table-line', proficiency: 8 },
+      { name: '엑셀', icon: 'ri-file-list-line', proficiency: 7 },
+      { name: '한컴독스', icon: 'ri-file-hwp-line', proficiency: 8 },
+      { name: '워드', icon: 'ri-file-word-line', proficiency: 8 },
+      { name: 'PPT', icon: 'ri-slideshow-line', proficiency: 9 },
     ],
   },
   {
     category: 'Collaboration',
     items: [
-      { name: '슬랙', icon: 'ri-slack-line' },
-      { name: '노션', icon: 'ri-sticky-note-line' },
-      { name: 'JIRA', icon: 'ri-bug-line' },
+      { name: '슬랙', icon: 'ri-slack-line', proficiency: 8 },
+      { name: '노션', icon: 'ri-sticky-note-line', proficiency: 9 },
+      { name: 'JIRA', icon: 'ri-bug-line', proficiency: 7 },
+      { name: '깃허브', icon: 'ri-github-line', proficiency: 6 },
+    ],
+  },
+  {
+    category: 'AI Tools',
+    items: [
+      { name: 'ChatGPT', icon: 'ri-openai-line', proficiency: 9 },
+      { name: 'Claude', icon: 'ri-robot-line', proficiency: 8 },
+      { name: 'Gemini', icon: 'ri-gemini-line', proficiency: 7 },
     ],
   },
   {
     category: 'Design',
     items: [
-      { name: '피그마', icon: 'ri-pen-nib-line' },
-      { name: '포토샵', icon: 'ri-magic-line' },
-      { name: '일러스트', icon: 'ri-palette-line' },
+      { name: '피그마', icon: 'ri-pen-nib-line', proficiency: 7 },
+      { name: '포토샵', icon: 'ri-magic-line', proficiency: 6 },
+      { name: '일러스트', icon: 'ri-palette-line', proficiency: 6 },
     ],
   },
   {
     category: 'Tech',
     items: [
-      { name: 'HTML5', icon: 'ri-code-line' },
-      { name: 'CSS3', icon: 'ri-braces-line' },
-      { name: '파이썬', icon: 'ri-terminal-line' },
+      { name: 'HTML5', icon: 'ri-code-line', proficiency: 7 },
+      { name: 'CSS3', icon: 'ri-braces-line', proficiency: 7 },
+      { name: '파이썬', icon: 'ri-terminal-line', proficiency: 5 },
+      { name: 'SQL', icon: 'ri-database-2-line', proficiency: 5 },
     ],
   },
 ];

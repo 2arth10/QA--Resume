@@ -54,17 +54,20 @@ export default function Stage4Skills() {
                 <div className="flex-1 h-px bg-[#44DCCC]/30 ml-2" />
               </div>
               <div className="grid grid-cols-2 gap-3">
-                {group.items.map((item, idx) => {
-                  const isLastOdd = group.items.length % 2 !== 0 && idx === group.items.length - 1;
+                {group.items.map((item) => {
                   return (
                     <div
                       key={item.name}
-                      className={`flex items-center gap-3 bg-white border border-gray-200 px-5 py-3.5 hover:border-[#44DCCC]/50 transition-all duration-200 ${isLastOdd ? 'col-span-2' : ''}`}
+                      className="flex items-center gap-3 bg-white border border-gray-200 px-4 py-3 hover:border-[#44DCCC]/50 transition-all duration-200"
                     >
-                      <div className="w-10 h-10 flex items-center justify-center shrink-0 bg-[#44DCCC]/10 text-[#44DCCC]">
+                      <div className="w-9 h-9 flex items-center justify-center shrink-0 bg-[#44DCCC]/10 text-[#44DCCC]">
                         <i className={`${item.icon} text-base`} />
                       </div>
-                      <span className="text-sm font-black text-[#3D3D3D]">{item.name}</span>
+                      <span className="text-sm font-black text-[#3D3D3D] flex-1">{item.name}</span>
+                      <div className="flex items-baseline gap-0.5 shrink-0">
+                        <span className="text-lg font-black text-[#3D3D3D]">{item.proficiency}</span>
+                        <span className="text-xs font-bold text-gray-400">/10</span>
+                      </div>
                     </div>
                   );
                 })}
