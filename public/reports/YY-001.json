@@ -1,0 +1,8 @@
+{
+  "text": "연운 기능 테스트 및 개선 제안 리포트입니다.\n\n테스트 환경: PC / Windows 11\n테스트 기간: 2024.10\n\n주요 검수 항목\n- 메인 스토리 퀘스트 흐름 및 분기 처리 검증\n- NPC 대화 텍스트 오탈자 및 번역 품질 검수\n- 스킬 및 버프 시스템 정상 작동 여부 확인\n- 그래픽 연출 및 컷씬 재생 이상 여부 검증\n\n발견된 주요 이슈\n- 특정 퀘스트 분기 진입 시 무한 로딩 발생\n- 일부 NPC 대화창 텍스트 박스 영역 벗어남 확인\n\n개선 제안\n- 퀘스트 이동 경로 내비게이션 UI 개선 필요\n- 스킬 쿨타임 시각적 피드백 강화 제안",
+  "images": [
+    "https://placehold.co/600x400?text=Yeon+Woon+Screenshot+1",
+    "https://placehold.co/600x400?text=Yeon+Woon+Screenshot+2"
+  ],
+  "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ"
+}

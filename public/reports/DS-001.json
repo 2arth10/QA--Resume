@@ -1,0 +1,8 @@
+{
+  "text": "드래곤 소드 게임 밸런스 및 버그 리포팅을 진행했습니다.\n\n테스트 환경: PC / Windows 11\n테스트 기간: 2024.12\n\n주요 검수 항목\n- 전투 시스템 밸런스 및 스킬 데미지 수치 검증\n- 몬스터 AI 패턴 및 보스 공격 싱크 확인\n- 아이템 드롭률 및 보상 시스템 검증\n- 멀티플레이 동기화 이슈 확인\n\n발견된 주요 이슈\n- 특정 스킬 연속 사용 시 데미지 미적용 버그 발견\n- 보스 몬스터 체력바 표시 오류 확인",
+  "images": [
+    "https://placehold.co/600x400?text=Dragon+Sword+Screenshot+1",
+    "https://placehold.co/600x400?text=Dragon+Sword+Screenshot+2"
+  ],
+  "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ"
+}

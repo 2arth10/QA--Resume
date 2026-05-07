@@ -1,6 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
 import { skillData } from '@/mocks/portfolio';
 
+type ReportContent = {
+  text?: string;
+  images?: string[];
+  videoUrl?: string;
+};
+
 type Report = {
   id: string;
   title: string;
@@ -10,6 +16,7 @@ type Report = {
   status: string;
   characterImg?: string;
   pdfUrl?: string;
+  content?: ReportContent;
 };
 
 /* ─── Modal ─── */
@@ -20,6 +27,16 @@ function ReportModal({
   report: Report | null;
   onClose: () => void;
 }) {
+  const [content, setContent] = useState<ReportContent | null>(null);
+
+  useEffect(() => {
+    if (!report) { setContent(null); return; }
+    fetch(`/reports/${report.id}.json`)
+      .then((r) => r.ok ? r.json() : null)
+      .then((data) => setContent(data))
+      .catch(() => setContent(null));
+  }, [report]);
+
   if (!report) return null;
 
   return (
@@ -61,18 +78,65 @@ function ReportModal({
           {/* 구분선 */}
           <div className="h-px w-full bg-gray-200 mb-8" />
 
-          {/* 통합 콘텐츠 영역 */}
-          <div>
-            <h3 className="text-sm font-black text-[#3D3D3D] mb-3 flex items-center gap-2">
-              <span className="w-1 h-4 bg-[#44DCCC]" />
-              리포트 내용
-            </h3>
-            <div className="w-full min-h-[500px] bg-gray-50 border-2 border-dashed border-gray-300 p-8 flex flex-col items-center justify-center gap-3">
-              <i className="ri-article-line text-5xl text-gray-300" />
-              <p className="text-base text-gray-400 font-medium">글을 작성할 수 있는 영역입니다</p>
-              <p className="text-xs text-gray-300">이곳에 테스트 내용, 버그 설명, 재현 방법 등을 작성하세요</p>
+          {/* 콘텐츠 영역 */}
+          {content ? (
+            <div className="space-y-8">
+              {/* 텍스트 */}
+              {content.text && (
+                <div>
+                  <h3 className="text-sm font-black text-[#3D3D3D] mb-3 flex items-center gap-2">
+                    <span className="w-1 h-4 bg-[#44DCCC]" />
+                    리포트 내용
+                  </h3>
+                  <p className="text-sm text-gray-600 leading-relaxed whitespace-pre-line">{content.text}</p>
+                </div>
+              )}
+
+              {/* 이미지 */}
+              {content.images && content.images.length > 0 && (
+                <div>
+                  <h3 className="text-sm font-black text-[#3D3D3D] mb-3 flex items-center gap-2">
+                    <span className="w-1 h-4 bg-[#44DCCC]" />
+                    스크린샷
+                  </h3>
+                  <div className="grid grid-cols-2 gap-3">
+                    {content.images!.map((src, i) => (
+                      <img key={i} src={src} alt={`screenshot-${i}`} className="w-full rounded border border-gray-200 object-cover" />
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* 영상 */}
+              {content.videoUrl && (
+                <div>
+                  <h3 className="text-sm font-black text-[#3D3D3D] mb-3 flex items-center gap-2">
+                    <span className="w-1 h-4 bg-[#44DCCC]" />
+                    영상
+                  </h3>
+                  <div className="w-full aspect-video">
+                    <iframe
+                      src={content.videoUrl}
+                      className="w-full h-full rounded border border-gray-200"
+                      allowFullScreen
+                    />
+                  </div>
+                </div>
+              )}
             </div>
-          </div>
+          ) : (
+            <div>
+              <h3 className="text-sm font-black text-[#3D3D3D] mb-3 flex items-center gap-2">
+                <span className="w-1 h-4 bg-[#44DCCC]" />
+                리포트 내용
+              </h3>
+              <div className="w-full min-h-[500px] bg-gray-50 border-2 border-dashed border-gray-300 p-8 flex flex-col items-center justify-center gap-3">
+                <i className="ri-article-line text-5xl text-gray-300" />
+                <p className="text-base text-gray-400 font-medium">글을 작성할 수 있는 영역입니다</p>
+                <p className="text-xs text-gray-300">이곳에 테스트 내용, 버그 설명, 재현 방법 등을 작성하세요</p>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* 하단 버튼 */}

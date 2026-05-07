@@ -1,0 +1,8 @@
+{
+  "text": "카오스 제로 나이트메어 전투 시스템 및 UI 검수 리포트입니다.\n\n테스트 환경: PC / Windows 11\n테스트 기간: 2024.11\n\n주요 검수 항목\n- 전투 시스템 전반 기능 검증 (스킬, 콤보, 회피)\n- UI 레이아웃 및 HUD 요소 표시 이상 여부 확인\n- 캐릭터 스탯 수치 및 장비 효과 적용 검증\n- 튜토리얼 흐름 및 가이드 텍스트 오탈자 검수\n\n발견된 주요 이슈\n- 콤보 연결 도중 캐릭터 애니메이션 끊김 현상 발견\n- 일부 스킬 이펙트 미출력 버그 확인",
+  "images": [
+    "https://placehold.co/600x400?text=CZ+Screenshot+1",
+    "https://placehold.co/600x400?text=CZ+Screenshot+2"
+  ],
+  "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ"
+}

@@ -1,0 +1,8 @@
+{
+  "text": "파이널판타지14 기능 테스트 및 UI/UX 검수를 진행했습니다.\n\n테스트 환경: PC / Windows 11\n테스트 기간: 2025.01\n\n주요 검수 항목\n- 메인 퀘스트 진행 흐름 및 NPC 상호작용 검증\n- UI 요소 정렬, 폰트, 아이콘 표시 이상 여부 확인\n- 스킬 쿨타임 및 버프/디버프 표시 정확도 검증\n- 인벤토리 및 장비 시스템 기능 이상 여부 확인\n\n발견된 주요 이슈\n- 특정 조건에서 스킬 아이콘 중복 표시 버그 확인\n- 해상도 변경 시 UI 레이아웃 깨짐 현상 발견",
+  "images": [
+    "https://placehold.co/600x400?text=Screenshot+1",
+    "https://placehold.co/600x400?text=Screenshot+2"
+  ],
+  "videoUrl": "https://www.youtube.com/embed/dQw4w9WgXcQ"
+}

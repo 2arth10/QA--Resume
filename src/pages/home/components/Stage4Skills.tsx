@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { Icon } from '@iconify/react';
 import { skillsToolData } from '@/mocks/portfolio';
 
 export default function Stage4Skills() {
@@ -60,10 +61,16 @@ export default function Stage4Skills() {
                       key={item.name}
                       className="flex items-center gap-3 bg-white border border-gray-200 px-4 py-3 hover:border-[#44DCCC]/50 transition-all duration-200"
                     >
-                      <div className="w-9 h-9 flex items-center justify-center shrink-0 bg-[#44DCCC]/10 text-[#44DCCC]">
-                        <i className={`${item.icon} text-base`} />
+                      <div className="w-9 h-9 flex items-center justify-center shrink-0 bg-[#44DCCC]/10 border border-[#44DCCC]/40">
+                        {item.img
+                          ? <img src={item.img} alt={item.name} className="w-5 h-5 object-contain" />
+                          : <Icon icon={item.icon} width={20} height={20} color={item.color} />
+                        }
                       </div>
-                      <span className="text-sm font-black text-[#3D3D3D] flex-1">{item.name}</span>
+                      <div className="flex-1 min-w-0">
+                        <span className="text-sm font-black text-[#3D3D3D]">{item.name}</span>
+                        {item.desc && <p className="text-[11px] text-gray-400 mt-0.5 truncate">{item.desc}</p>}
+                      </div>
                       <div className="flex items-baseline gap-0.5 shrink-0">
                         <span className="text-lg font-black text-[#3D3D3D]">{item.proficiency}</span>
                         <span className="text-xs font-bold text-gray-400">/10</span>
