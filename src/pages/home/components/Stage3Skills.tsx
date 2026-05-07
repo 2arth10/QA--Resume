@@ -5,6 +5,7 @@ type ReportContent = {
   text?: string;
   images?: string[];
   videoUrl?: string;
+  pdfFile?: string;
 };
 
 type Report = {
@@ -81,6 +82,21 @@ function ReportModal({
           {/* 콘텐츠 영역 */}
           {content ? (
             <div className="space-y-8">
+              {/* PDF */}
+              {content.pdfFile && (
+                <div>
+                  <h3 className="text-sm font-black text-[#3D3D3D] mb-3 flex items-center gap-2">
+                    <span className="w-1 h-4 bg-[#44DCCC]" />
+                    보고서 PDF
+                  </h3>
+                  <iframe
+                    src={content.pdfFile}
+                    className="w-full border border-gray-200 rounded"
+                    style={{ height: '600px' }}
+                  />
+                </div>
+              )}
+
               {/* 텍스트 */}
               {content.text && (
                 <div>
@@ -147,12 +163,23 @@ function ReportModal({
           >
             취소
           </button>
-          <button
-            onClick={onClose}
-            className="px-6 py-2.5 bg-[#44DCCC] text-sm font-bold text-[#1a1a1a] hover:bg-[#3bc9bb] transition-colors"
-          >
-            JIRA PDF 확인
-          </button>
+          {content?.pdfFile ? (
+            <a
+              href={content.pdfFile}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-6 py-2.5 bg-[#44DCCC] text-sm font-bold text-[#1a1a1a] hover:bg-[#3bc9bb] transition-colors"
+            >
+              보고서 원본 확인
+            </a>
+          ) : (
+            <button
+              onClick={onClose}
+              className="px-6 py-2.5 bg-[#44DCCC] text-sm font-bold text-[#1a1a1a] hover:bg-[#3bc9bb] transition-colors"
+            >
+              JIRA PDF 확인
+            </button>
+          )}
         </div>
       </div>
     </div>

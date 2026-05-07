@@ -213,40 +213,22 @@ export default function Stage1Profile() {
               </div>
             </div>{/* grid 닫기 */}
           </div>{/* flex flex-col 닫기 */}
-          <div
-            className="bg-white overflow-hidden border border-[#3D3D3D]/40"
-            style={{
-              border: "1.5px solid rgb(61, 61, 61)",
-              clipPath:
-                "polygon(0px 0px, calc(100% - 12px) 0px, 100% 12px, 100% 100%, 12px 100%, 0px 100%)",
-              boxShadow: "rgba(61, 61, 61, 0.15) 4px 4px 0px",
-            }}
-          >
-            <div className="px-4 py-[13px] text-xs font-bold tracking-widest flex items-center gap-2 bg-[#3D3D3D] text-[#44DCCC]">
-              <i className="ri-trophy-line" />
-              SKILL
+          <div>
+            <div className="flex items-center">
+              <div className="px-5 py-2 text-xs font-black tracking-widest bg-[#3D3D3D] text-[#44DCCC]">
+                SKILL
+              </div>
             </div>
-            <div className="p-4 flex flex-wrap gap-2">
+            <div className="w-full h-px bg-[#3D3D3D]" />
+            <div className="bg-white p-4 flex flex-wrap gap-2" style={{ borderBottom: '2px solid #3D3D3D' }}>
               {profileData.skills.map((skill) => (
                 <div
                   key={skill.name}
-                  className="relative skew-x-[-12deg] px-4 py-1.5 text-xs font-semibold transition-all duration-200 whitespace-nowrap border-t border-b border-[#3D3D3D]/60 border-l-0 border-r-0 bg-[#FFFFD9] text-[#3D3D3D] "
+                  className="relative px-4 py-1.5 text-xs font-semibold transition-all duration-200 whitespace-nowrap border-t border-b border-[#3D3D3D]/60 border-l-0 border-r-0 bg-[#FFFFD9] text-[#3D3D3D]"
                 >
-                  <div
-                    className="absolute bottom-0 left-0 w-[2px] h-2"
-                    style={{
-                      background:
-                        "linear-gradient(to top, rgba(61,61,61,0.6) 0%, rgba(61,61,61,0.25) 60%, transparent 100%)",
-                    }}
-                  />
-                  <div
-                    className="absolute top-0 right-0 w-[2px] h-2"
-                    style={{
-                      background:
-                        "linear-gradient(to bottom, rgba(61,61,61,0.6) 0%, rgba(61,61,61,0.25) 60%, transparent 100%)",
-                    }}
-                  />
-                  <span className="inline-flex items-center gap-1 skew-x-[12deg]">
+                  <div className="absolute bottom-0 left-0 w-[2px] h-2" style={{ background: 'linear-gradient(to top, rgba(61,61,61,0.6) 0%, rgba(61,61,61,0.25) 60%, transparent 100%)' }} />
+                  <div className="absolute top-0 right-0 w-[2px] h-2" style={{ background: 'linear-gradient(to bottom, rgba(61,61,61,0.6) 0%, rgba(61,61,61,0.25) 60%, transparent 100%)' }} />
+                  <span className="inline-flex items-center gap-1">
                     <i className={`${skill.icon}`} />
                     {skill.name}
                   </span>

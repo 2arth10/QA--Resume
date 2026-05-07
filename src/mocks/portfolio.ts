@@ -40,6 +40,16 @@ export const profileData = {
 export const careerData = {
   items: [
     {
+      title: 'ISTQB Foundation Level',
+      subtitle: '국제 소프트웨어 테스팅 자격증 (CTFL)',
+      period: '2026.02',
+      description: 'ISTQB(International Software Testing Qualifications Board) Foundation Level 자격증을 취득했습니다.',
+      tags: ['# ISTQB', '# CTFL', '# 자격증'],
+      type: 'education',
+      icon: 'ri-award-line',
+      sideIcon: 'ri-medal-fill',
+    },
+    {
       title: '게임QA 교육 이수',
       subtitle: '',
       period: '2025.11 ~ 2025.12',
