@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
+import ReactMarkdown from 'react-markdown';
 import { skillData } from '@/mocks/portfolio';
 
 type ReportContent = {
-  text?: string;
+  text?: string | string[];
   images?: string[];
   videoUrl?: string;
   pdfFile?: string;
@@ -104,7 +105,32 @@ function ReportModal({
                     <span className="w-1 h-4 bg-[#44DCCC]" />
                     리포트 내용
                   </h3>
-                  <p className="text-sm text-gray-600 leading-relaxed whitespace-pre-line">{content.text}</p>
+                  <div className="prose max-w-none text-gray-600">
+                    <ReactMarkdown key={Array.isArray(content.text) ? content.text.join('') : content.text}
+                      components={{
+                        h1: ({ children }) => <h1 className="text-2xl font-black text-[#3D3D3D] mt-6 mb-2">{children}</h1>,
+                        h2: ({ children }) => <h2 className="text-xl font-black text-[#3D3D3D] mt-6 mb-2">{children}</h2>,
+                        h3: ({ children }) => <h3 className="text-lg font-black text-[#3D3D3D] mt-4 mb-1">{children}</h3>,
+                        p: ({ children }) => {
+                          const text = String(children);
+                          if (text.includes('youtube.com/embed/') || text.includes('youtu.be/')) {
+                            const embedUrl = text.includes('youtu.be/')
+                              ? text.replace('youtu.be/', 'www.youtube.com/embed/').split('?')[0]
+                              : text;
+                            return <div className="w-full aspect-video my-3"><iframe src={embedUrl.trim()} className="w-full h-full rounded border border-gray-200" allowFullScreen /></div>;
+                          }
+                          if (text.trim().endsWith('.mp4')) {
+                            return <div className="my-3"><video src={text.trim()} controls className="rounded border border-gray-200" style={{ maxHeight: '540px' }} /></div>;
+                          }
+                          return <p className="mb-2">{children}</p>;
+                        },
+                        img: ({ src, alt }) => <img src={src} alt={alt} className="w-full rounded border border-gray-200 my-3" />,
+                        ol: ({ children }) => <ol className="list-decimal list-inside space-y-1 mb-2">{children}</ol>,
+                        ul: ({ children }) => <ul className="list-disc list-inside space-y-1 mb-2">{children}</ul>,
+                        li: ({ children }) => <li className="text-sm text-gray-600">{children}</li>,
+                      }}
+                    >{Array.isArray(content.text) ? content.text.join('\n\n') : content.text}</ReactMarkdown>
+                  </div>
                 </div>
               )}
 
@@ -115,7 +141,7 @@ function ReportModal({
                     <span className="w-1 h-4 bg-[#44DCCC]" />
                     스크린샷
                   </h3>
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className={`grid gap-3 ${content.images!.length === 1 ? 'grid-cols-1' : 'grid-cols-2'}`}>
                     {content.images!.map((src, i) => (
                       <img key={i} src={src} alt={`screenshot-${i}`} className="w-full rounded border border-gray-200 object-cover" />
                     ))}
@@ -172,6 +198,15 @@ function ReportModal({
             >
               보고서 원본 확인
             </a>
+          ) : report.pdfUrl ? (
+            <a
+              href={report.pdfUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-6 py-2.5 bg-[#44DCCC] text-sm font-bold text-[#1a1a1a] hover:bg-[#3bc9bb] transition-colors"
+            >
+              JIRA PDF 확인
+            </a>
           ) : (
             <button
               onClick={onClose}
@@ -179,6 +214,7 @@ function ReportModal({
             >
               JIRA PDF 확인
             </button>
+
           )}
         </div>
       </div>

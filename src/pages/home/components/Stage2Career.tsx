@@ -1,20 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { careerData } from "@/mocks/portfolio";
 
 export default function Stage2Career() {
-  const [visible, setVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setVisible(true);
-      },
-      { threshold: 0.15 },
-    );
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
 
   return (
     <div
@@ -91,18 +79,13 @@ export default function Stage2Career() {
                       <div className="flex items-center gap-3 relative z-10">
                         <div>
                           <i
-                            className={`${item.icon} text-xs text-[#44DCCC] skew-x-[6deg]`}
+                            className={`${item.icon} text-[14px] text-[#44DCCC] skew-x-[6deg]`}
                           />
                         </div>
-                        <span className="text-xs font-black tracking-wider text-[#44DCCC]">
-                          EDUCATION
-                        </span>
-                      </div>
-                      <span className="text-xs px-3 py-1 relative z-10 skew-x-[-6deg] text-white">
-                        <span className="inline-block skew-x-[6deg]">
+                        <span className="text-[14px] font-black tracking-wider text-[#44DCCC]">
                           {item.period}
                         </span>
-                      </span>
+                      </div>
                     </div>
                     <div className="px-6 py-5">
                       <div className="flex items-start justify-between gap-4">
