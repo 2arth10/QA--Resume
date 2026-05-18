@@ -48,6 +48,7 @@ export const careerData = {
       type: 'education',
       icon: 'ri-award-line',
       sideIcon: 'ri-medal-fill',
+      pdfUrl: '/ISTQB_자격증.pdf',
     },
     {
       title: '게임QA 교육 이수',
@@ -171,6 +172,7 @@ export const skillData = {
       date: '2026.01.29',
       status: '완료',
       characterImg: '/연운.png',
+      pdfUrl: '/YY-연운-버그리포트.pdf',
     },
     {
       id: 'MB-001',
@@ -180,6 +182,7 @@ export const skillData = {
       date: '2026.04.15',
       status: '완료',
       characterImg: 'https://storage.readdy-site.link/project_files/a6ca4dd3-6c1e-4f87-a06c-f19010fe655b/73a82214-2550-4dfa-b2b2-6c7bd4a8361b_-.png?v=6a8255dd3ec474fec935bd9d21f8159e',
+      pdfUrl: '/MB-마비노기-버그리포트.pdf',
     },
   ],
   abdReports: [

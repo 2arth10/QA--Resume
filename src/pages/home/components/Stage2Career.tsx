@@ -3,6 +3,7 @@ import { careerData } from "@/mocks/portfolio";
 
 export default function Stage2Career() {
   const [visible, setVisible] = useState(false);
+  const [pdfModal, setPdfModal] = useState<string | null>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -15,6 +16,7 @@ export default function Stage2Career() {
   }, []);
 
   return (
+    <>
     <div
       ref={sectionRef}
       className="min-h-screen flex items-center justify-center px-20 py-24 relative overflow-hidden"
@@ -113,7 +115,10 @@ export default function Stage2Career() {
                           </h3>
                           <div className="flex items-center gap-2 mb-[1.4rem]">
                             <div className="w-1 h-3 bg-[#44DCCC]" />
-                            <p className="text-sm font-semibold text-[#666]">
+                            <p
+                              className={`text-sm font-semibold text-[#666] ${item.pdfUrl ? 'cursor-pointer hover:text-[#44DCCC] underline underline-offset-2 transition-colors' : ''}`}
+                              onClick={() => item.pdfUrl && setPdfModal(item.pdfUrl)}
+                            >
                               {item.subtitle}
                             </p>
                           </div>
@@ -175,5 +180,20 @@ export default function Stage2Career() {
         </div>
       </div>
     </div>
+
+      {pdfModal && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm" onClick={() => setPdfModal(null)}>
+          <div className="relative w-[900px] max-w-[96vw] h-[90vh] bg-white shadow-2xl flex flex-col" onClick={(e) => e.stopPropagation()}>
+            <div className="shrink-0 px-6 py-4 flex items-center justify-between border-b border-gray-200">
+              <span className="text-sm font-black text-[#3D3D3D]">자격증 확인</span>
+              <button onClick={() => setPdfModal(null)} className="w-8 h-8 flex items-center justify-center hover:bg-gray-100 text-gray-400 hover:text-gray-600">
+                <i className="ri-close-line text-lg" />
+              </button>
+            </div>
+            <iframe src={pdfModal} className="flex-1 w-full" />
+          </div>
+        </div>
+      )}
+    </>
   );
 }
