@@ -3,7 +3,6 @@ import { profileData } from "@/mocks/portfolio";
 
 export default function Stage1Profile() {
   const [visible, setVisible] = useState(false);
-  const [activeTab, setActiveTab] = useState<'info' | 'stat'>('info');
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -50,7 +49,7 @@ export default function Stage1Profile() {
 
       <div className="max-w-5xl w-full grid grid-cols-12 gap-8 items-end">
         <div className="col-span-1" />
-        <div className="col-span-4 flex flex-col items-center gap-5">
+        <div className={`col-span-4 flex flex-col items-center gap-5 transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <div className="relative w-full skew-x-[-6deg] -ml-[7px]">
             {/* 왼쪽 테두리 - 위에서 아래로 연해짐 */}
             <div
@@ -103,7 +102,7 @@ export default function Stage1Profile() {
             </div>
           </div>
         </div>
-        <div className="col-span-7 space-y-4 ml-6">
+        <div className={`col-span-7 space-y-4 ml-6 transition-all duration-700 delay-200 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <div>
             <div className="flex items-center gap-2 mb-2">
               <span className="text-[21px] font-black tracking-wider text-[#FFFFD9] bg-[#3D3D3D] px-4 border border-[#3D3D3D]/20 leading-none" style={{ paddingTop: '2px', paddingBottom: '2px' }}>
@@ -140,79 +139,45 @@ export default function Stage1Profile() {
               </div>
             </div>
           </div>
-          {/* 탭 버튼 + 선 + 콘텐츠 */}
-          <div className="flex flex-col">
+          {/* INFO */}
+          <div>
             <div className="flex items-center">
-              {(['info', 'stat'] as const).map((tab) => (
-                <button
-                  key={tab}
-                  onClick={() => setActiveTab(tab)}
-                  className={`px-5 py-2 text-xs font-black tracking-widest transition-colors duration-200 ${
-                    activeTab === tab ? 'bg-[#3D3D3D] text-[#44DCCC]' : 'text-gray-400 hover:text-[#3D3D3D]'
-                  }`}
-                >
-                  {tab === 'info' ? 'INFO' : 'STAT'}
-                </button>
-              ))}
+              <div className="px-5 py-2 text-xs font-black tracking-widest bg-[#3D3D3D] text-[#44DCCC]">INFO</div>
             </div>
             <div className="w-full h-px bg-[#3D3D3D]" />
-
-            {/* 콘텐츠 고정 높이 */}
-            <div style={{ display: 'grid', backgroundColor: 'white', borderBottom: '2px solid #3D3D3D' }}>
-
-              {/* INFO - 항상 렌더링, 높이 기준 */}
-              <div style={{ gridArea: '1/1', visibility: activeTab === 'info' ? 'visible' : 'hidden' }}>
-                {profileData.info.map((item, idx, arr) => (
-                  <div
-                    key={item.label}
-                    className={`flex items-center group transition-colors duration-150 ${
-                      idx !== arr.length - 1 ? 'border-b border-gray-200' : ''
-                    }`}
-                  >
-                    <div className="w-[120px] px-4 py-2.5 flex items-center gap-2 shrink-0 bg-white self-stretch">
-                      <i className={`${item.icon} text-[13px] text-[#44DCCC]`} />
-                      <span className="text-[13px] text-[#3D3D3D] font-bold">{item.label}</span>
-                    </div>
-                    <div className="px-4 py-2.5 text-[13px] font-medium text-[#5A5A5A] flex-1">
-                      {item.links ? (
-                        <div className="flex flex-col gap-1">
-                          {item.links.map((l, i) => (
-                            <a key={i} href={l.url} target="_blank" rel="noopener noreferrer" className="text-[#44DCCC] hover:underline font-black">
-                              {l.text}
-                            </a>
-                          ))}
-                        </div>
-                      ) : item.link ? (
-                        <a href={item.link} target="_blank" rel="noopener noreferrer" className="text-[#44DCCC] hover:underline font-black">
-                          {item.value}
-                        </a>
-                      ) : (
-                        item.value
-                      )}
-                    </div>
+            <div style={{ backgroundColor: 'white', borderBottom: '2px solid #3D3D3D' }}>
+              {profileData.info.map((item, idx, arr) => (
+                <div
+                  key={item.label}
+                  className={`flex items-center group transition-colors duration-150 ${
+                    idx !== arr.length - 1 ? 'border-b border-gray-200' : ''
+                  }`}
+                >
+                  <div className="w-[120px] px-4 py-2.5 flex items-center gap-2 shrink-0 bg-white self-stretch">
+                    <i className={`${item.icon} text-[13px] text-[#44DCCC]`} />
+                    <span className="text-[13px] text-[#3D3D3D] font-bold">{item.label}</span>
                   </div>
-                ))}
-              </div>
-
-              {/* STAT - INFO 높이에 맞춰 flex-1로 채움 */}
-              <div style={{ gridArea: '1/1', visibility: activeTab === 'stat' ? 'visible' : 'hidden', display: 'flex', flexDirection: 'column' }}>
-                {profileData.characterStats.map((stat, idx, arr) => (
-                  <div
-                    key={stat.label}
-                    className={`flex flex-1 items-center gap-3 px-4 ${
-                      idx !== arr.length - 1 ? 'border-b border-dashed border-gray-300' : ''
-                    }`}
-                  >
-                    <span className="text-[13px] font-bold text-[#3D3D3D] w-24 shrink-0">{stat.label}</span>
-                    <div className="flex-1 h-1.5 bg-gray-200">
-                      <div className="h-full bg-[#44DCCC]" style={{ width: activeTab === 'stat' ? `${stat.value}%` : '0%', transition: activeTab === 'stat' ? 'width 0.6s ease-out' : 'none' }} />
-                    </div>
-                    <span className="text-[13px] font-black text-[#3D3D3D] w-6 text-right">{stat.value}</span>
+                  <div className="px-4 py-2.5 text-[13px] font-medium text-[#5A5A5A] flex-1">
+                    {item.links ? (
+                      <div className="flex flex-col gap-1">
+                        {item.links.map((l, i) => (
+                          <a key={i} href={l.url} target="_blank" rel="noopener noreferrer" className="text-[#44DCCC] hover:underline font-black">
+                            {l.text}
+                          </a>
+                        ))}
+                      </div>
+                    ) : item.link ? (
+                      <a href={item.link} target="_blank" rel="noopener noreferrer" className="text-[#44DCCC] hover:underline font-black">
+                        {item.value}
+                      </a>
+                    ) : (
+                      item.value
+                    )}
                   </div>
-                ))}
-              </div>
-            </div>{/* grid 닫기 */}
-          </div>{/* flex flex-col 닫기 */}
+                </div>
+              ))}
+            </div>
+          </div>
           <div>
             <div className="flex items-center">
               <div className="px-5 py-2 text-xs font-black tracking-widest bg-[#3D3D3D] text-[#44DCCC]">

@@ -1,8 +1,18 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { careerData } from "@/mocks/portfolio";
 
 export default function Stage2Career() {
+  const [visible, setVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setVisible(true); },
+      { threshold: 0.1 }
+    );
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div
@@ -55,7 +65,15 @@ export default function Stage2Career() {
             {careerData.items.map((item, idx) => {
               const isMint = idx % 2 === 0;
               return (
-                <div key={idx} className="relative group">
+                <div
+                  key={idx}
+                  className="relative group transition-all duration-500"
+                  style={{
+                    opacity: visible ? 1 : 0,
+                    transform: visible ? 'translateY(0)' : 'translateY(20px)',
+                    transitionDelay: `${idx * 80}ms`,
+                  }}
+                >
                   <div
                     className={`absolute -left-9 top-[20px] w-5 h-5 flex items-center justify-center skew-x-[-6deg] ${isMint ? "bg-[#44DCCC] shadow-[0_0_10px_rgba(68,220,204,0.35)]" : "bg-[#3D3D3D] shadow-[0_0_10px_rgba(61,61,61,0.35)]"}`}
                   >

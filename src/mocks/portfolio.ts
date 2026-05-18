@@ -11,13 +11,13 @@ export const profileData = {
     { label: 'INT', value: 90, max: 100 },
   ],
   info: [
-    { icon: 'ri-time-line', label: '이메일', value: 'asd576@naver.com' },
-    { icon: 'ri-briefcase-line', label: '연락처', value: '010-4362-6336' },
-    { icon: 'ri-phone-line', label: '주소', value: '인천광역시 남동구 은봉로288' },
+    { icon: 'ri-mail-line', label: '이메일', value: 'asd576@naver.com' },
+    { icon: 'ri-phone-line', label: '연락처', value: '010-4362-6336' },
+    { icon: 'ri-map-pin-line', label: '주소', value: '인천광역시 남동구 은봉로288' },
     { icon: 'ri-github-line', label: '깃허브', value: 'GitHub 바로가기', link: 'https://github.com/2arth10' },
     { icon: 'ri-links-line', label: '포트폴리오', value: '', links: [
       { text: '1) 테스트 케이스(TC) 바로가기', url: 'https://docs.google.com/spreadsheets/d/1r0bEw7DM7eQXFc0e32mrIlJHRU-OW1F65nYbX1FsMwM/edit?usp=sharing' },
-      { text: '2) 카오스 제로 나이트메어 게임 분석서 바로가기', url: 'https://example.com/game-analysis.pdf' },
+      { text: '2) 카오스 제로 나이트메어 게임 분석서 바로가기', url: '/카제나_게임분석서.pdf' },
     ] },
   ],
   characterStats: [
